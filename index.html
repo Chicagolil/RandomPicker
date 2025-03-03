@@ -5,40 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Choix Aléatoire de Noms</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .bg-primary {
+        background-color: #f89a21;
+      }
+      .text-primary {
+        color: #f89a21;
+      }
+      .bg-secondary {
+        background-color: #7f7f7f;
+      }
+    </style>
   </head>
-  <body class="flex items-center justify-center h-screen bg-gray-100">
+  <body class="flex items-center justify-center h-screen bg-[#242424]">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4 text-center">
+      <h1 class="text-2xl font-bold mb-4 text-center text-primary">
         Sélectionneur de Noms Aléatoires de Gérard Gérard
       </h1>
 
-      <label class="block mb-2 font-semibold"
+      <label class="block mb-2 font-semibold text-[#7F7F7F]"
         >Entrez les ptits noms des ptits vieux (séparés par des virgules) :</label
       >
       <textarea
         id="nameList"
-        class="w-full p-2 border rounded mb-4"
+        class="w-full p-2 border border-[#7F7F7F] rounded mb-4"
         rows="3"
       ></textarea>
 
-      <label class="block mb-2 font-semibold"
+      <label class="block mb-2 font-semibold text-[#7F7F7F]"
         >Nombre de noms à sélectionner :</label
       >
       <input
         id="count"
         type="number"
-        class="w-full p-2 border rounded mb-4"
+        class="w-full p-2 border border-[#7F7F7F] rounded mb-4"
         min="1"
       />
 
       <button
         onclick="pickRandomNames()"
-        class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        class="w-full bg-primary text-white p-2 rounded hover:bg-orange-600"
       >
         Et hop la magie du hasard
       </button>
 
-      <h2 class="text-xl font-semibold mt-4">Noms sélectionnés :</h2>
+      <h2 class="text-xl font-semibold mt-4 text-primary">Noms sélectionnés :</h2>
       <ul id="result" class="mt-2 space-y-1"></ul>
     </div>
 
@@ -67,7 +78,7 @@
         selected.forEach((name) => {
           const li = document.createElement("li");
           li.textContent = name;
-          li.className = "bg-gray-200 p-2 rounded";
+          li.className = "bg-secondary p-2 rounded text-white";
           resultList.appendChild(li);
         });
       }
