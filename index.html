@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choix Aléatoire de Noms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-4 text-center">
+        Sélectionneur de Noms Aléatoires
+      </h1>
+
+      <label class="block mb-2 font-semibold"
+        >Entrez les noms (séparés par des virgules) :</label
+      >
+      <textarea
+        id="nameList"
+        class="w-full p-2 border rounded mb-4"
+        rows="3"
+      ></textarea>
+
+      <label class="block mb-2 font-semibold"
+        >Nombre de noms à sélectionner :</label
+      >
+      <input
+        id="count"
+        type="number"
+        class="w-full p-2 border rounded mb-4"
+        min="1"
+      />
+
+      <button
+        onclick="pickRandomNames()"
+        class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+      >
+        Sélectionner
+      </button>
+
+      <h2 class="text-xl font-semibold mt-4">Noms sélectionnés :</h2>
+      <ul id="result" class="mt-2 space-y-1"></ul>
+    </div>
+
+    <script>
+      function pickRandomNames() {
+        const names = document
+          .getElementById("nameList")
+          .value.split(",")
+          .map((name) => name.trim())
+          .filter((name) => name !== "");
+        const count = parseInt(document.getElementById("count").value, 10);
+        const resultList = document.getElementById("result");
+
+        resultList.innerHTML = "";
+
+        if (names.length === 0 || count <= 0 || count > names.length) {
+          alert(
+            "Veuillez entrer des noms valides et un nombre dans la plage autorisée."
+          );
+          return;
+        }
+
+        const shuffled = names.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, count);
+
+        selected.forEach((name) => {
+          const li = document.createElement("li");
+          li.textContent = name;
+          li.className = "bg-gray-200 p-2 rounded";
+          resultList.appendChild(li);
+        });
+      }
+    </script>
+  </body>
+</html>
